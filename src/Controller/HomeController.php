@@ -8,14 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-     /**
-     * @Route("/hello/{prenom}", name="hello")
-     */
-    public function hello($prenom = "Anonyme")
-    {
-        return new Response("Bonjour ". $prenom);
-    }
-
     /**
      * @Route("/", name="homepage")
      */
