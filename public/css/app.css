@@ -17,3 +17,17 @@ div.carousel-caption h5{
 div.carousel-caption{
     text-shadow:3px 3px 3px rgba(0,0,0,0.5);
 }
+
+.avatar{
+    max-width: 128px;
+    height: 128px;
+    border-radius: 50%;
+}
+.avatar-medium{
+    max-width: 64px;
+    height: 64px;
+}
+.avatar-mini{
+    max-width: 34px;
+    height: 34px;
+}
