@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réserver l'annonce {{ad.title}}}{% endblock %}
+{% block stylesheet %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+
+{% endblock %}
+{% block body %}
+<div class="container">
+    <h1>Réserver pour l'annonce {{ad.title}}</h1>
+
+    <p>Vous êtes sur le point de réserver pour l'annnonce de <strong>{{ ad.author.fullName}}</strong></p>
+
+    {{form_start(form)}}
+    <div class="alert alert-light">
+        <h2>Choisissez les dates d'arrivée et de départ</h2>
+        <div class="row">
+            <div class="col">
+                {{form_row(form.startDate)}}
+            </div>
+            <div class="col">
+                {{form_row(form.endDate)}}
+            </div>
+        </div>
+    
+        <h4>Montant du séjour : <span id="amount"> ...</span> &euro;</h4>
+        <span id="days">0</span> nuit(s) à {{ad.price}} / nuit
+
+        <h4 class="mt-3">Un commentaire à nous adresser ?</h4>
+    
+        {{form_row(form.comment)}}
+    </div>    
+        <button class="btn btn-success">Je réserve !</button>
+        {{form_end(form)}}
+    
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#booking_startDate, #booking_endDate').datepicker({
+        format: 'dd/mm/yyyy',
+        datesDisabled: [
+            {% for day in ad.notAvailableDays %}
+                "{{day.format('d/m/Y')}}",
+            {% endfor %}
+        ],
+        startDate: new Date()
+    });
+})
+    
+</script>
+{% endblock %}
